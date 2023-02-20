@@ -42,9 +42,8 @@ for file in os.listdir(folder):
 
 '''
 Console command:
-ffmpeg
--hwaccel cuda
--c:v h264_cuvid
--y
+ffmpeg \
+-i [input video] \
+-c copy \
 [output video]
 '''
