@@ -44,3 +44,9 @@ python flv2mp4withass.py -folder [folder 视频文件夹] -b [码率（单位：
 # 计算文件夹内直播内容的总流水
 python incomestat.py -folder [folder 视频文件夹]
 ```
+
+## Todo
+
+* [ ] 支持Linux
+* [ ] 优化代码结构与执行效率
+* [ ] 发布至 pypi，实现命令行直接调用
