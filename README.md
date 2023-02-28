@@ -23,7 +23,7 @@ B站录播加弹幕 Add danmaku to live recordings
 用法：
 
 ```shell
-python autotrans.py -folder [folder 视频文件夹] -b [码率（单位：kbps）]
+python autotrans.py -folder [folder 视频文件夹] -b [码率（单位：Mbps）]
 ```
 
 只要指定文件夹，脚本能自动识别到文件夹下所有视频，批量加弹幕。
@@ -36,10 +36,10 @@ python autotrans.py -folder [folder 视频文件夹] -b [码率（单位：kbps�
 python flv2mp4.py -folder [folder 视频文件夹]
 
 # mp4 格式加 ass 字幕，生成 mp4，新生成的文件会在源文件后面加 "_ass" 后缀
-python mp4tomp4withass.py -folder [folder 视频文件夹] -b [码率（单位：kbps）]
+python mp4tomp4withass.py -folder [folder 视频文件夹] -b [码率（单位：Mbps）]
 
 # flv 格式加 ass 字幕，生成 mp4，ass 字幕文件需要与视频在同一文件夹下且与视频同名
-python flv2mp4withass.py -folder [folder 视频文件夹] -b [码率（单位：kbps）]
+python flv2mp4withass.py -folder [folder 视频文件夹] -b [码率（单位：Mbps）]
 
 # 计算文件夹内直播内容的总流水
 python incomestat.py -folder [folder 视频文件夹]
