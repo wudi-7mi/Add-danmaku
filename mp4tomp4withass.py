@@ -2,9 +2,7 @@
 Some Configurations
 '''
 
-# Notice!! Don't use .mkv as sources video format!!!
 video_format = ['mp4']
-
 
 '''
 ArgParser Part

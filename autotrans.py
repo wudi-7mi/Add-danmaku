@@ -2,7 +2,19 @@ import subprocess
 import ffmpeg
 import os
 import argparse
+import platform
 from incomestat import getfolderstat
+
+
+def detectSys():
+  if platform.system() == "Windows":
+    execFileName = "DF_REL1.62CLI.exe"
+  elif platform.system() == "Linux":
+    execFileName = "DanmakuFactory"
+  else:
+    print("不支持该系统")
+    exit()
+  return execFileName
 
 
 def trans(folder:str, bitrate:int):
@@ -15,10 +27,11 @@ def trans(folder:str, bitrate:int):
       file_name = file[:-4]
       print(f'Dealing with file : "{file}"')
 
+      execFileName = detectSys()
       file_path = os.path.abspath(f'{folder}/{file}')
       xml_path = os.path.abspath(f'{folder}/{file_name}.xml')
       ass_path = os.path.abspath(f'{folder}/{file_name}.ass')
-      subprocess.call(f'DF_REL1.62CLI.exe --showmsgbox FALSE -i "{xml_path}" -o "{ass_path}"')
+      subprocess.call(f'{execFileName} --showmsgbox FALSE -i "{xml_path}" -o "{ass_path}"')
       ass_path = ass_path.replace('\\', '/')
       ass_path = ass_path.replace(':', '\\\\:')
 
@@ -63,16 +76,10 @@ if __name__ == "__main__":
 
 '''
 Console command:
-ffmpeg
--hwaccel cuda
--c:v h264_cuvid
--y
--hide_banner
--i [input video]
--vf fps=fps=60,scale=1920:1080,subtitles=[input ass]
--b:v 5000k
--vcodec h264_nvenc
--c:a aac
--b:a 320k
+ffmpeg \
+-hwaccel cuda -c:v h264_cuvid -y -hide_banner \
+-i [input video] \
+-vf fps=fps=60,scale=1920:1080,subtitles=[input ass] \
+-b:v 5000k -vcodec h264_nvenc \
 [output video]
 '''
