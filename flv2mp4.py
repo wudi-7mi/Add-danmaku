@@ -30,8 +30,8 @@ for file in os.listdir(folder):
       task,
       f'{folder}/{file_name}.mp4',
       loglevel='error',
-      **{'y':None},
-      **{'stats':None},
+      y=None,
+      stats=None,
       acodec='copy',
       vcodec='copy'
     )

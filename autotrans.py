@@ -8,9 +8,9 @@ from incomestat import getfolderstat
 
 def detectSys():
   if platform.system() == "Windows":
-    execFileName = "DF_REL1.62CLI.exe"
+    execFileName = os.path.abspath("DF_REL1.62CLI.exe")
   elif platform.system() == "Linux":
-    execFileName = "DanmakuFactory"
+    execFileName = os.path.abspath("DanmakuFactory")
   else:
     print("不支持该系统")
     exit()
@@ -31,7 +31,8 @@ def trans(folder:str, bitrate:int):
       file_path = os.path.abspath(f'{folder}/{file}')
       xml_path = os.path.abspath(f'{folder}/{file_name}.xml')
       ass_path = os.path.abspath(f'{folder}/{file_name}.ass')
-      subprocess.call(f'{execFileName} --showmsgbox FALSE -i "{xml_path}" -o "{ass_path}"')
+      subprocess.run([execFileName, "--showmsgbox", "FALSE", "-i", xml_path, "-o", ass_path])
+      # subprocess.call(f'{execFileName} --showmsgbox FALSE -i "{xml_path}" -o "{ass_path}"')
       ass_path = ass_path.replace('\\', '/')
       ass_path = ass_path.replace(':', '\\\\:')
 
@@ -40,8 +41,8 @@ def trans(folder:str, bitrate:int):
         task,
         f'{folder}/{file_name}.mp4',
         loglevel='error',
-        **{'y':None},
-        **{'stats':None},
+        y = None,
+        stats = None,
         vf=f'fps=60,scale=1920:1080,subtitles={ass_path}',
         vcodec='h264_nvenc',
         video_bitrate=f'{bitrate}k',
